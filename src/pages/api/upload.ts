@@ -4,10 +4,9 @@ import formidable from "formidable";
 import * as fs from "fs";
 //import { NextRequest, NextResponse } from 'next/server'
 
+import csvParser from "csv-parser";
 type Data = {
-    data: {
-        url: string;
-    } | null;
+    data: any;
     error: string | null;
 };
 
@@ -16,6 +15,19 @@ export const config = {
         bodyParser: false,
     },
 };
+
+
+
+function parse(results, path:string){
+
+    return fs.createReadStream(path)
+        .pipe(csvParser())
+        .on('data', (data) => results.push({
+            id:data['Id'], name: data['Name']
+        }))
+
+}
+
 
 export default async function handler(
     req: NextApiRequest,
@@ -63,13 +75,26 @@ export default async function handler(
                 return;
             }
 
-            res.status(200).json({
-                data: {
-                    url: "/uploaded-file-url",
-                },
-                error: null,
-            });
+
         });
+
+        const results: {id:string, name:string}[] = [];
+
+        parse(results, destinationPath)
+            .on('end', () => {
+                res.status(200).json({
+                    data: results,
+                    error: null,
+                })
+            })
+            .on('error', (err) => {
+                    res.status(500).json({ data:null, error: err.message });
+                });
+
+
+
+
+
 
 
     } catch (err) {

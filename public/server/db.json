@@ -35,7 +35,7 @@
     {
       "id": "5",
       "name": "Ron Burgundy",
-      "username": "Colorburgundy",
+        "username": "Colorburgundy",
       "email": "Rongundy@gmail.com",
       "phone": 23455,
       "company": "Color Burgundy"

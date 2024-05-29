@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/formidable": "^3.4.5",
+    "formidable": "^3.5.1",
     "next": "14.2.3",
     "ra-data-fakerest": "^4.16.17",
     "ra-data-json-server": "^4.16.17",

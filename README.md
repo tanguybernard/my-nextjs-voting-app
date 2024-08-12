@@ -3,6 +3,9 @@
 
 ## Credits
 
+https://codeariv.com/how-to-create-a-multi-page-website-with-next-js/
+
+
 First Tuto
 
 https://www.techomoro.com/how-to-create-a-multi-page-website-with-next-js/
